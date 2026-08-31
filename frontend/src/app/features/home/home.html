@@ -1,0 +1,18 @@
+<main class="home">
+    <header class="topbar">
+        <span class="brand">EA Trading</span>
+        <button type="button" class="btn btn-ghost" (click)="logout()">Log out</button>
+    </header>
+
+    @if (auth.profile(); as profile) {
+    <section class="welcome-card">
+        <p class="greeting">Welcome back,</p>
+        <h1>{{ profile.name }}</h1>
+
+        <div class="balance">
+            <span class="balance-label">Account balance</span>
+            <span class="balance-value">{{ profile.balance | number: '1.2-2' }} USD</span>
+        </div>
+    </section>
+    }
+</main>

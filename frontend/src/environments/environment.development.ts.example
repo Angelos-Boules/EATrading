@@ -1,0 +1,7 @@
+// Copy to environment.development.ts, or run `npm run set-env` with a .env file to generate it.
+export const environment = {
+    production: false,
+    apiBaseUrl: '',
+    supabaseUrl: 'https://YOUR_PROJECT.supabase.co',
+    supabaseAnonKey: 'YOUR_SUPABASE_ANON_KEY',
+};

@@ -1,6 +1,10 @@
 import { Routes } from '@angular/router';
-import { JsonViewer } from './features/json-viewer/json-viewer';
+import { Landing } from './features/landing/landing';
+import { Home } from './features/home/home';
+import { authGuard, guestGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
-    { path: '', component: JsonViewer },
+    { path: '', component: Landing, canActivate: [guestGuard] },
+    { path: 'home', component: Home, canActivate: [authGuard] },
+    { path: '**', redirectTo: '' },
 ];
