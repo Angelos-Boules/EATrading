@@ -187,3 +187,68 @@ h1 {
         padding: 1.5rem;
     }
 }
+
+/* Users Section Styles */
+.users-section {
+    width: 100%;
+    padding: 3rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-top: 1px solid rgba(244, 246, 251, 0.1);
+}
+
+.users-container {
+    max-width: 64rem;
+    margin: 0 auto;
+}
+
+.users-container h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 0 0 1.5rem;
+    color: #f4f6fb;
+}
+
+.loading-text {
+    color: #aab3c8;
+    font-style: italic;
+    margin: 1rem 0;
+}
+
+.users-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+}
+
+.user-card {
+    background: rgba(107, 214, 168, 0.08);
+    border: 1px solid rgba(107, 214, 168, 0.2);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    transition: all 0.2s ease;
+}
+
+.user-card:hover {
+    background: rgba(107, 214, 168, 0.12);
+    border-color: rgba(107, 214, 168, 0.35);
+}
+
+.user-card p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+    color: #aab3c8;
+}
+
+.user-name {
+    color: #6fd6a8;
+    font-weight: 600;
+}
+
+.user-email {
+    word-break: break-all;
+}
+
+.user-id {
+    font-size: 0.85rem;
+    color: #7a8299;
+}

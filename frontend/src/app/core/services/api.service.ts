@@ -4,6 +4,17 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 /**
+ * User information parsed from the API
+ */
+export interface User {
+    id?: number;
+    uuid?: string;
+    name?: string | null;
+    totalBalance?: number;
+    [key: string]: unknown;
+}
+
+/**
  * Thin wrapper around HttpClient that prefixes every call with the configured
  * backend host. Change the host by editing `apiBaseUrl` in the environment
  * files under src/environments/ - nothing else needs to change.
@@ -27,6 +38,36 @@ export class ApiService {
 
     delete<T>(path: string): Observable<T> {
         return this.http.delete<T>(this.buildUrl(path));
+    }
+
+    /**
+     * Fetch users from the API
+     */
+    getUsers(): Observable<User[]> {
+        return this.get<User[]>('/api/users');
+    }
+
+    /**
+     * Fetch a single user by their numeric database ID
+     */
+    getUser(id: number): Observable<User> {
+        return this.get<User>(`/api/users/${id}`);
+    }
+
+    /**
+     * The backend only exposes users by numeric ID, not by Supabase auth UUID,
+     * so match against the full list client-side.
+     */
+    getUserByUuid(uuid: string): Observable<User | undefined> {
+        return new Observable((subscriber) => {
+            this.getUsers().subscribe({
+                next: (users) => {
+                    subscriber.next(users.find((u) => u.uuid === uuid));
+                    subscriber.complete();
+                },
+                error: (err) => subscriber.error(err),
+            });
+        });
     }
 
     private buildUrl(path: string): string {
