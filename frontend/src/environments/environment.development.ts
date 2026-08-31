@@ -4,4 +4,7 @@
 export const environment = {
     production: false,
     apiBaseUrl: '',
+    // Supabase project's URL and anon (public) key.
+    supabaseUrl: 'https://fnefqtyromkitlflsksh.supabase.co',
+    supabaseAnonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZuZWZxdHlyb21raXRsZmxza3NoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc3NzIzNjIsImV4cCI6MjEwMzM0ODM2Mn0.BqTuAmAEArVwtRDdM3ec6XXyHCGvXOw44-G_1QFNKvk',
 };
