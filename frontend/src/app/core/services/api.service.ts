@@ -55,19 +55,10 @@ export class ApiService {
     }
 
     /**
-     * The backend only exposes users by numeric ID, not by Supabase auth UUID,
-     * so match against the full list client-side.
+     * Fetch a single user by their Supabase auth UUID via GET /api/users/uuid/{uuid}.
      */
-    getUserByUuid(uuid: string): Observable<User | undefined> {
-        return new Observable((subscriber) => {
-            this.getUsers().subscribe({
-                next: (users) => {
-                    subscriber.next(users.find((u) => u.uuid === uuid));
-                    subscriber.complete();
-                },
-                error: (err) => subscriber.error(err),
-            });
-        });
+    getUserByUuid(uuid: string): Observable<User> {
+        return this.get<User>(`/api/users/uuid/${uuid}`);
     }
 
     private buildUrl(path: string): string {
