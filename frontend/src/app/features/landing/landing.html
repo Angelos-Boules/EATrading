@@ -1,0 +1,64 @@
+<main class="landing">
+    <section class="hero">
+        <div class="logo-spot" aria-label="Trading platform logo">
+            <img src="ea-logo.png" alt="EA Trading logo" class="logo-mark" />
+            <span class="logo-text">EA Trading</span>
+        </div>
+
+        <h1>Trade smarter, together.</h1>
+        <p class="tagline">Real-time markets, automated strategies, one dashboard.</p>
+
+        <div class="cta-group">
+            <button type="button" class="btn btn-primary" (click)="openSignup()">Sign up</button>
+            <button type="button" class="btn btn-ghost" (click)="openLogin()">Log in</button>
+        </div>
+    </section>
+
+    @if (mode() !== 'none') {
+    <div class="overlay" (click)="closePanel()">
+        <div class="auth-panel" (click)="$event.stopPropagation()">
+            <button type="button" class="close-btn" (click)="closePanel()" aria-label="Close">×</button>
+
+            <h2>{{ mode() === 'signup' ? 'Create your account' : 'Welcome back' }}</h2>
+
+            <form (ngSubmit)="submit()">
+                @if (mode() === 'signup') {
+                <label class="field">
+                    <span>Name</span>
+                    <input type="text" name="name" [ngModel]="name()" (ngModelChange)="name.set($event)" required
+                        autocomplete="name" />
+                </label>
+                }
+
+                <label class="field">
+                    <span>Email</span>
+                    <input type="email" name="email" [ngModel]="email()" (ngModelChange)="email.set($event)" required
+                        autocomplete="email" />
+                </label>
+
+                <label class="field">
+                    <span>Password</span>
+                    <input type="password" name="password" [ngModel]="password()" (ngModelChange)="password.set($event)"
+                        required minlength="6" autocomplete="current-password" />
+                </label>
+
+                @if (error()) {
+                <p class="error">{{ error() }}</p>
+                }
+
+                <button type="submit" class="btn btn-primary btn-block" [disabled]="submitting()">
+                    {{ submitting() ? 'Please wait…' : mode() === 'signup' ? 'Sign up' : 'Log in' }}
+                </button>
+            </form>
+
+            <p class="switch-mode">
+                @if (mode() === 'signup') {
+                Already have an account? <a href="javascript:void(0)" (click)="openLogin()">Log in</a>
+                } @else {
+                New here? <a href="javascript:void(0)" (click)="openSignup()">Sign up</a>
+                }
+            </p>
+        </div>
+    </div>
+    }
+</main>
