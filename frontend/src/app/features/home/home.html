@@ -1,7 +1,10 @@
 <main class="home">
     <header class="topbar">
         <span class="brand">EA Trading</span>
-        <button type="button" class="btn btn-ghost" (click)="logout()">Log out</button>
+        <div class="topbar-actions">
+            <app-stock-search></app-stock-search>
+            <button type="button" class="btn btn-ghost" (click)="logout()">Log out</button>
+        </div>
     </header>
 
     @if (loadingAccount()) {
@@ -16,5 +19,37 @@
             <span class="balance-value">{{ acc.totalBalance | number: '1.2-2' }} USD</span>
         </div>
     </section>
+
+    <!-- TODO: add portfolio performance graph here (ag-grid charts integration) -->
+
+    <nav class="home-tabs">
+        <button type="button" class="tab-button" [class.active]="activeTab() === 'portfolio'"
+            (click)="setTab('portfolio')">
+            Portfolio
+        </button>
+        <button type="button" class="tab-button" [class.active]="activeTab() === 'orders'" (click)="setTab('orders')">
+            Orders
+        </button>
+    </nav>
+
+    @if (activeTab() === 'portfolio') {
+    <section class="tab-panel">
+        <ul class="holdings-list">
+            @for (holding of portfolioHoldings(); track holding.symbol) {
+            <li class="holding-item">
+                <span class="holding-symbol">{{ holding.symbol }}</span>
+                <span class="holding-name">{{ holding.name }}</span>
+                <span class="holding-shares">{{ holding.shares }} shares</span>
+                <span class="holding-value">{{ holding.value | number: '1.2-2' }} USD</span>
+            </li>
+            }
+        </ul>
+    </section>
+    } @else {
+    <section class="tab-panel">
+        <p class="placeholder-text">Order history is coming soon. This will redirect to a dedicated orders page.</p>
+        <button type="button" class="btn btn-ghost" disabled>Go to orders</button>
+    </section>
+    }
     }
 </main>

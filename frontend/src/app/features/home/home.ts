@@ -1,13 +1,31 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { ApiService, User } from '../../core/services/api.service';
+import { StockSearch } from './components/stock-search/stock-search';
+
+type HomeTab = 'portfolio' | 'orders';
+
+interface PortfolioHolding {
+    symbol: string;
+    name: string;
+    shares: number;
+    value: number;
+}
+
+const MOCK_PORTFOLIO: PortfolioHolding[] = [
+    { symbol: 'AAPL', name: 'Apple Inc.', shares: 12, value: 2271.84 },
+    { symbol: 'AMZN', name: 'Amazon.com Inc.', shares: 5, value: 891.05 },
+    { symbol: 'MSFT', name: 'Microsoft Corp.', shares: 3, value: 1246.8 },
+    { symbol: 'NVDA', name: 'NVIDIA Corp.', shares: 8, value: 971.2 },
+    { symbol: 'TSLA', name: 'Tesla Inc.', shares: 4, value: 955.6 },
+];
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [DecimalPipe],
+    imports: [DecimalPipe, StockSearch],
     templateUrl: './home.html',
     styleUrl: './home.css',
 })
@@ -19,8 +37,17 @@ export class Home implements OnInit {
     protected readonly account = signal<User | null>(null);
     protected readonly loadingAccount = signal(false);
 
+    protected readonly activeTab = signal<HomeTab>('portfolio');
+    protected readonly portfolioHoldings = computed(() =>
+        [...MOCK_PORTFOLIO].sort((a, b) => a.symbol.localeCompare(b.symbol)),
+    );
+
     ngOnInit(): void {
         this.fetchAccount();
+    }
+
+    setTab(tab: HomeTab): void {
+        this.activeTab.set(tab);
     }
 
     private fetchAccount(): void {
