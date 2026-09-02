@@ -1,13 +1,12 @@
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { Router } from '@angular/router';
-import { AuthService } from '../../core/services/auth.service';
-import { ApiService, User } from '../../core/services/api.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { ApiService, User } from '../../../core/services/api.service';
 import { StockSearch } from './components/stock-search/stock-search';
-import { PortfolioTableComponent } from '../dashboard/components/portfolio-table/portfolio-table';
-import { PortfolioTable } from '../dashboard/interfaces/portfolio-table.interface';
-type HomeTab = 'portfolio' | 'orders';
-
+import { PortfolioTableComponent } from '../components/portfolio-table/portfolio-table';
+import { PortfolioTable } from '../interfaces/portfolio-table.interface';
+type ClientDashboardTab = 'portfolio' | 'orders';
 
 const MOCK_PORTFOLIO: PortfolioTable[] = [
     { symbol: 'AAPL', name: 'Apple Inc.', shares: 12, value: 2271.84, allocation: 30, dayChange: 3.42, overallReturn: 0 },
@@ -18,33 +17,33 @@ const MOCK_PORTFOLIO: PortfolioTable[] = [
 ];
 
 @Component({
-    selector: 'app-home',
-    standalone: true,
-    imports: [DecimalPipe, StockSearch, PortfolioTableComponent],
-    templateUrl: './home.html',
-    styleUrl: './home.css',
+  imports: [DecimalPipe, StockSearch, PortfolioTableComponent],
+  selector: 'app-client-dashboard',
+  standalone: true,
+  styleUrl: './client-dashboard.css',
+  templateUrl: './client-dashboard.html',
 })
-export class Home implements OnInit {
+export class ClientDashboard implements OnInit {
     protected readonly auth = inject(AuthService);
     private readonly router = inject(Router);
     private readonly api = inject(ApiService);
-
+  
     protected readonly account = signal<User | null>(null);
     protected readonly loadingAccount = signal(false);
 
-    protected readonly activeTab = signal<HomeTab>('portfolio');
+    protected readonly activeTab = signal<ClientDashboardTab>('portfolio');
     protected readonly portfolioHoldings = computed(() =>
         [...MOCK_PORTFOLIO].sort((a, b) => a.symbol.localeCompare(b.symbol)),
     );
-
+  
     ngOnInit(): void {
         this.fetchAccount();
     }
-
-    setTab(tab: HomeTab): void {
+  
+    setTab(tab: ClientDashboardTab): void {
         this.activeTab.set(tab);
     }
-
+  
     private fetchAccount(): void {
         const userId = this.auth.user()?.id;
         if (!userId) {
@@ -68,4 +67,5 @@ export class Home implements OnInit {
         await this.auth.signOut();
         this.router.navigateByUrl('/');
     }
-}
+  }
+  

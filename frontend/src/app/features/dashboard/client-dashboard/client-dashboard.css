@@ -5,7 +5,7 @@
     color: #f4f6fb;
 }
 
-.home {
+.client-dashboard {
     min-height: 100dvh;
     padding: 1.5rem;
     max-width: 60rem;
@@ -86,7 +86,7 @@
     color: #6fd6a8;
 }
 
-.home-tabs {
+.client-dashboard-tabs {
     display: flex;
     gap: 0.5rem;
     max-width: 28rem;

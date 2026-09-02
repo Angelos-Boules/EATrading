@@ -7,7 +7,7 @@ import { PortfolioTable } from '../../interfaces/portfolio-table.interface';
   imports: [DataGrid],
   selector: 'app-portfolio-table',
   standalone: true,
-  styleUrl: './portfolio-table.css',
+  styleUrls: ['./portfolio-table.css'],
   templateUrl: './portfolio-table.html',
 })
 export class PortfolioTableComponent {
