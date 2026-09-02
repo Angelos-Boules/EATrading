@@ -34,16 +34,7 @@
 
     @if (activeTab() === 'portfolio') {
     <section class="tab-panel">
-        <ul class="holdings-list">
-            @for (holding of portfolioHoldings(); track holding.symbol) {
-            <li class="holding-item">
-                <span class="holding-symbol">{{ holding.symbol }}</span>
-                <span class="holding-name">{{ holding.name }}</span>
-                <span class="holding-shares">{{ holding.shares }} shares</span>
-                <span class="holding-value">{{ holding.value | number: '1.2-2' }} USD</span>
-            </li>
-            }
-        </ul>
+        <app-portfolio-table [rowData]="portfolioHoldings()"></app-portfolio-table>
     </section>
     } @else {
     <section class="tab-panel">

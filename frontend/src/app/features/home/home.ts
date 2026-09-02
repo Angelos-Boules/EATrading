@@ -4,28 +4,23 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { ApiService, User } from '../../core/services/api.service';
 import { StockSearch } from './components/stock-search/stock-search';
-
+import { PortfolioTableComponent } from '../dashboard/components/portfolio-table/portfolio-table';
+import { PortfolioTable } from '../dashboard/interfaces/portfolio-table.interface';
 type HomeTab = 'portfolio' | 'orders';
 
-interface PortfolioHolding {
-    symbol: string;
-    name: string;
-    shares: number;
-    value: number;
-}
 
-const MOCK_PORTFOLIO: PortfolioHolding[] = [
-    { symbol: 'AAPL', name: 'Apple Inc.', shares: 12, value: 2271.84 },
-    { symbol: 'AMZN', name: 'Amazon.com Inc.', shares: 5, value: 891.05 },
-    { symbol: 'MSFT', name: 'Microsoft Corp.', shares: 3, value: 1246.8 },
-    { symbol: 'NVDA', name: 'NVIDIA Corp.', shares: 8, value: 971.2 },
-    { symbol: 'TSLA', name: 'Tesla Inc.', shares: 4, value: 955.6 },
+const MOCK_PORTFOLIO: PortfolioTable[] = [
+    { symbol: 'AAPL', name: 'Apple Inc.', shares: 12, value: 2271.84, allocation: 30, dayChange: 3.42, overallReturn: 0 },
+    { symbol: 'AMZN', name: 'Amazon.com Inc.', shares: 5, value: 891.05, allocation: 15, dayChange: 7.32, overallReturn: 0 },
+    { symbol: 'MSFT', name: 'Microsoft Corp.', shares: 3, value: 1246.8, allocation: 20, dayChange: -1.23, overallReturn: 0 },
+    { symbol: 'NVDA', name: 'NVIDIA Corp.', shares: 8, value: 971.2, allocation: 20, dayChange: 23.4, overallReturn: 0 },
+    { symbol: 'TSLA', name: 'Tesla Inc.', shares: 4, value: 955.6, allocation: 15, dayChange: -2.30, overallReturn: 0 },
 ];
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [DecimalPipe, StockSearch],
+    imports: [DecimalPipe, StockSearch, PortfolioTableComponent],
     templateUrl: './home.html',
     styleUrl: './home.css',
 })
