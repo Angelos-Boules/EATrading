@@ -58,6 +58,6 @@ export class Landing {
             return;
         }
 
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/dashboard');
     }
 }
