@@ -24,48 +24,48 @@ const MOCK_PORTFOLIO: PortfolioTable[] = [
   templateUrl: './client-dashboard.html',
 })
 export class ClientDashboard implements OnInit {
-  protected readonly auth = inject(AuthService);
-      private readonly router = inject(Router);
-      private readonly api = inject(ApiService);
+    protected readonly auth = inject(AuthService);
+    private readonly router = inject(Router);
+    private readonly api = inject(ApiService);
   
-      protected readonly account = signal<User | null>(null);
-      protected readonly loadingAccount = signal(false);
+    protected readonly account = signal<User | null>(null);
+    protected readonly loadingAccount = signal(false);
+
+    protected readonly activeTab = signal<ClientDashboardTab>('portfolio');
+    protected readonly portfolioHoldings = computed(() =>
+        [...MOCK_PORTFOLIO].sort((a, b) => a.symbol.localeCompare(b.symbol)),
+    );
   
-      protected readonly activeTab = signal<ClientDashboardTab>('portfolio');
-      protected readonly portfolioHoldings = computed(() =>
-          [...MOCK_PORTFOLIO].sort((a, b) => a.symbol.localeCompare(b.symbol)),
-      );
+    ngOnInit(): void {
+        this.fetchAccount();
+    }
   
-      ngOnInit(): void {
-          this.fetchAccount();
-      }
+    setTab(tab: ClientDashboardTab): void {
+        this.activeTab.set(tab);
+    }
   
-      setTab(tab: ClientDashboardTab): void {
-          this.activeTab.set(tab);
-      }
-  
-      private fetchAccount(): void {
-          const userId = this.auth.user()?.id;
-          if (!userId) {
-              return;
-          }
-  
-          this.loadingAccount.set(true);
-          this.api.getUserByUuid(userId).subscribe({
-              next: (account) => {
-                  this.account.set(account ?? null);
-                  this.loadingAccount.set(false);
-              },
-              error: (err) => {
-                  console.error('Error fetching account:', err);
-                  this.loadingAccount.set(false);
-              },
-          });
-      }
-  
-      async logout(): Promise<void> {
-          await this.auth.signOut();
-          this.router.navigateByUrl('/');
-      }
+    private fetchAccount(): void {
+        const userId = this.auth.user()?.id;
+        if (!userId) {
+            return;
+        }
+
+        this.loadingAccount.set(true);
+        this.api.getUserByUuid(userId).subscribe({
+            next: (account) => {
+                this.account.set(account ?? null);
+                this.loadingAccount.set(false);
+            },
+            error: (err) => {
+                console.error('Error fetching account:', err);
+                this.loadingAccount.set(false);
+            },
+        });
+    }
+
+    async logout(): Promise<void> {
+        await this.auth.signOut();
+        this.router.navigateByUrl('/');
+    }
   }
   
