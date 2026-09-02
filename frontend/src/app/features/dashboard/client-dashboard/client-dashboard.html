@@ -1,0 +1,46 @@
+<main class="client-dashboard">
+    <header class="topbar">
+        <span class="brand">EA Trading</span>
+        <div class="topbar-actions">
+            <app-stock-search></app-stock-search>
+            <button type="button" class="btn btn-ghost" (click)="logout()">Log out</button>
+        </div>
+    </header>
+
+    @if (loadingAccount()) {
+    <p class="loading-text">Loading account...</p>
+    } @else if (account(); as acc) {
+    <section class="welcome-card">
+        <p class="greeting">Welcome back,</p>
+        <h1>{{ acc.name ?? auth.user()?.email }}</h1>
+
+        <div class="balance">
+            <span class="balance-label">Account balance</span>
+            <span class="balance-value">{{ acc.totalBalance | number: '1.2-2' }} USD</span>
+        </div>
+    </section>
+
+    <!-- TODO: add portfolio performance graph here (ag-grid charts integration) -->
+
+    <nav class="client-dashboard-tabs">
+        <button type="button" class="tab-button" [class.active]="activeTab() === 'portfolio'"
+            (click)="setTab('portfolio')">
+            Portfolio
+        </button>
+        <button type="button" class="tab-button" [class.active]="activeTab() === 'orders'" (click)="setTab('orders')">
+            Orders
+        </button>
+    </nav>
+
+    @if (activeTab() === 'portfolio') {
+    <section class="tab-panel">
+        <app-portfolio-table [rowData]="portfolioHoldings()"></app-portfolio-table>
+    </section>
+    } @else {
+    <section class="tab-panel">
+        <p class="placeholder-text">Order history is coming soon. This will redirect to a dedicated orders page.</p>
+        <button type="button" class="btn btn-ghost" disabled>Go to orders</button>
+    </section>
+    }
+    }
+</main>
