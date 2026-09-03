@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { AgCharts } from 'ag-charts-angular';
-import { AllCommunityModule, ModuleRegistry, AgChartOptions, PieSeriesModule } from 'ag-charts-community';
+import { LegendModule, ModuleRegistry, AgChartOptions, PieSeriesModule } from 'ag-charts-community';
 
-ModuleRegistry.registerModules([AllCommunityModule, PieSeriesModule]);
+ModuleRegistry.registerModules([LegendModule, PieSeriesModule]);
 @Component({
   standalone: true,
   imports: [AgCharts],
