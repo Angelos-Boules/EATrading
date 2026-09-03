@@ -36,10 +36,9 @@
     <section class="tab-panel">
         <app-portfolio-table [rowData]="portfolioHoldings()"></app-portfolio-table>
     </section>
-    } @else {
+    } @else if (activeTab() === 'orders') {
     <section class="tab-panel">
-        <p class="placeholder-text">Order history is coming soon. This will redirect to a dedicated orders page.</p>
-        <button type="button" class="btn btn-ghost" disabled>Go to orders</button>
+        <app-orders-table [rowData]="orderHistory()"></app-orders-table>
     </section>
     }
     }
