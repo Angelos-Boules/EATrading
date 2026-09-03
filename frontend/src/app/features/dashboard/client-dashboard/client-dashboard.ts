@@ -6,6 +6,7 @@ import { ApiService, User } from '../../../core/services/api.service';
 import { StockSearch } from './components/stock-search/stock-search';
 import { PortfolioTableComponent } from '../components/portfolio-table/portfolio-table';
 import { PortfolioTable } from '../interfaces/portfolio-table.interface';
+// import { PieChartComponent } from '../components/pie-chart/pie-chart';
 type ClientDashboardTab = 'portfolio' | 'orders';
 
 const MOCK_PORTFOLIO: PortfolioTable[] = [
@@ -17,7 +18,7 @@ const MOCK_PORTFOLIO: PortfolioTable[] = [
 ];
 
 @Component({
-  imports: [DecimalPipe, StockSearch, PortfolioTableComponent],
+  imports: [DecimalPipe, StockSearch, PortfolioTableComponent, ], //PieChartComponent
   selector: 'app-client-dashboard',
   standalone: true,
   styleUrl: './client-dashboard.css',
@@ -35,7 +36,11 @@ export class ClientDashboard implements OnInit {
     protected readonly portfolioHoldings = computed(() =>
         [...MOCK_PORTFOLIO].sort((a, b) => a.symbol.localeCompare(b.symbol)),
     );
-  
+
+    // protected readonly pieChartData = computed(() =>
+    //     [...MOCK_PORTFOLIO].map(({ symbol, allocation }) => ({ label: symbol, value: allocation })),
+    // );
+
     ngOnInit(): void {
         this.fetchAccount();
     }

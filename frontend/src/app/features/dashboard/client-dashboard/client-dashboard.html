@@ -7,16 +7,18 @@
         </div>
     </header>
 
-    @if (loadingAccount()) {
+    <!-- @if (loadingAccount()) {
     <p class="loading-text">Loading account...</p>
-    } @else if (account(); as acc) {
+    } @else if (account(); as acc) { -->
     <section class="welcome-card">
         <p class="greeting">Welcome back,</p>
-        <h1>{{ acc.name ?? auth.user()?.email }}</h1>
+        <h1> Erika </h1>
+        
 
         <div class="balance">
             <span class="balance-label">Account balance</span>
-            <span class="balance-value">{{ acc.totalBalance | number: '1.2-2' }} USD</span>
+            <span class="balance-value"> USD</span>
+            <!-- {{ acc.totalBalance | number: '1.2-2' }} -->
         </div>
     </section>
 
@@ -32,6 +34,8 @@
         </button>
     </nav>
 
+    <!-- <app-pie-chart [data]="pieChartData()"></app-pie-chart> -->
+
     @if (activeTab() === 'portfolio') {
     <section class="tab-panel">
         <app-portfolio-table [rowData]="portfolioHoldings()"></app-portfolio-table>
@@ -42,5 +46,5 @@
         <button type="button" class="btn btn-ghost" disabled>Go to orders</button>
     </section>
     }
-    }
+    <!-- } -->
 </main>
