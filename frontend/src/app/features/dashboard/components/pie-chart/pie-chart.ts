@@ -15,19 +15,30 @@ export class PieChartComponent {
     title: {
       text: 'Pie Chart Example',
       fontSize: 18,
+      color: 'white',
     },
     series: [
       ({
         type: 'pie',
         labelKey: 'label',
         angleKey: 'value',
+        legendItemKey: 'label',
       } as any)
-    ]
+    ],
+    background: {
+      fill: 'none',
+    },
+    legend: {
+      item: {
+        label: {
+          color: 'white',
+        },
+      }
+    }
   };
   @Input()
   public set data(value: any[] | undefined) {
     if (!value) return;
-    // replace chartOptions object so AgCharts picks up the change
     this.chartOptions = {
       ...this.chartOptions,
       data: value,
