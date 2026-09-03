@@ -1,22 +1,18 @@
 <main class="client-dashboard">
-    <header class="topbar">
-        <span class="brand">EA Trading</span>
-        <div class="topbar-actions">
-            <app-stock-search></app-stock-search>
-            <button type="button" class="btn btn-ghost" (click)="logout()">Log out</button>
-        </div>
-    </header>
+    <app-top-bar (logout)="logout()"></app-top-bar>
 
-    @if (loadingAccount()) {
+    <!-- @if (loadingAccount()) {
     <p class="loading-text">Loading account...</p>
-    } @else if (account(); as acc) {
+    } @else if (account(); as acc) { -->
     <section class="welcome-card">
         <p class="greeting">Welcome back,</p>
-        <h1>{{ acc.name ?? auth.user()?.email }}</h1>
+        <h1> Angelos </h1> 
+        <!-- {{ acc.name ?? auth.user()?.email }} -->
 
         <div class="balance">
             <span class="balance-label">Account balance</span>
-            <span class="balance-value">{{ acc.totalBalance | number: '1.2-2' }} USD</span>
+            <span class="balance-value">1,200,000 USD</span>
+            <!-- {{ acc.totalBalance | number: '1.2-2' }} -->
         </div>
     </section>
 
@@ -41,5 +37,5 @@
         <app-orders-table [rowData]="orderHistory()"></app-orders-table>
     </section>
     }
-    }
+    <!-- } -->
 </main>

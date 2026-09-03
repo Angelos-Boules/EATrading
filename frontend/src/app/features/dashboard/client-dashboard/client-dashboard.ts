@@ -8,6 +8,7 @@ import { PortfolioTableComponent } from '../components/portfolio-table/portfolio
 import { PortfolioTable } from '../interfaces/portfolio-table.interface';
 import { OrdersTable } from '../interfaces/orders-table.interface';
 import { OrdersTableComponent } from '../components/orders-table/orders-table';
+import { TopBar } from '../../components/top-bar/top-bar';
 type ClientDashboardTab = 'portfolio' | 'orders';
 
 const MOCK_PORTFOLIO: PortfolioTable[] = [
@@ -62,7 +63,12 @@ const MOCK_ORDERS: OrdersTable[] = [
 ];
 
 @Component({
-  imports: [DecimalPipe, StockSearch, PortfolioTableComponent, OrdersTableComponent],
+  imports: [
+    DecimalPipe, 
+    StockSearch, 
+    PortfolioTableComponent, 
+    OrdersTableComponent,
+    TopBar],
   selector: 'app-client-dashboard',
   standalone: true,
   styleUrl: './client-dashboard.css',
