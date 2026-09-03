@@ -24,7 +24,8 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 export class DataGrid<T = any> {
   columnDefs = input.required<ColDef<T>[]>();
   rowData = input<T[] | null>(null);
-  gridOptions = input<GridOptions<T>>({});
+  // autoHeight sizes the grid to fit all rows instead of scrolling within a fixed box
+  gridOptions = input<GridOptions<T>>({ domLayout: 'autoHeight' });
   loading = input(false);
   defaultColDef = input<ColDef<T>>({ sortable: true, resizable: true, flex: 1, suppressMovable: false });
   rowSelection = input<RowSelectionOptions<T> | undefined>(undefined);

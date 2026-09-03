@@ -111,7 +111,7 @@
 }
 
 .tab-panel {
-    max-width: 28rem;
+    width: 100%;
     margin-top: 1.25rem;
 }
 
