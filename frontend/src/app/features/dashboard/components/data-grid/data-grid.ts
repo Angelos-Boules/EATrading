@@ -33,9 +33,12 @@ export class DataGrid<T = any> {
   rowClicked = output<RowClickedEvent<T>>();
   selectionChanged = output<SelectionChangedEvent<T>>();
 
-  // zebra-striped rows with a light hover tint
   protected readonly theme = themeQuartz.withParams({
-    oddRowBackgroundColor: 'rgba(0, 0, 0, 0.03)',
-    rowHoverColor: 'rgba(0, 0, 0, 0.06)',
+    backgroundColor: 'var(--dark-primary)',
+    foregroundColor: 'var(--text-light)',
+    borderColor: 'var(--border-light)',
+    oddRowBackgroundColor: 'rgba(171, 179, 191, 0.03)',
+    rowHoverColor: 'var(--bg-hover)',
+    accentColor: 'var(--accent)',
   });
 }
