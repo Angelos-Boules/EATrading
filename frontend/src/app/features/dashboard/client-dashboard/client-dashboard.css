@@ -7,39 +7,68 @@
 
 .client-dashboard {
     min-height: 100dvh;
-    padding: 1.5rem;
+    padding: 1.15rem;
     width: auto;
     margin: 0 auto;
 }
 
 .welcome-card {
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.5rem;
     border-radius: 1rem;
     padding: 2rem;
-    max-width: 28rem;
+    max-width: none;
+}
+
+.welcome-card .divider {
+    align-self: stretch;
+    width: 1px;
+    background: var(--border-light);
+}
+
+.graph-card {
+    margin-top: 1.5rem;
+    min-height: 22rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border-light);
+}
+
+.trade-sidebar {
+    min-height: 100%;
+    border-radius: 1rem;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-light);
 }
 
 .greeting {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
     margin: 0;
-    color: var(--text-muted);
+    /* color: var(--text-muted); */
     font-size: 0.95rem;
 }
 
-.welcome-card h1 {
-    margin: 0.25rem 0 1.5rem;
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--text-light);
+.greeting p {
+    margin: 0;
 }
 
-.balance {
+.welcome-card h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.stat {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
 }
 
-.balance-label {
+.stat-label {
     font-size: 0.8rem;
     color: var(--text-muted);
     text-transform: uppercase;
@@ -47,10 +76,10 @@
     font-weight: 600;
 }
 
-.balance-value {
+.stat-value {
     font-size: 1.75rem;
     font-weight: 700;
-    color: var(--accent);
+    color: white;
 }
 
 .client-dashboard-tabs {

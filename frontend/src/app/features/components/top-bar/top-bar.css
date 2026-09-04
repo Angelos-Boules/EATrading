@@ -31,8 +31,19 @@
     align-items: center;
     transition: color 0.2s ease;
     text-decoration: none;
-    filter: drop-shadow(0 0 3px rgba(255, 77, 133, 0.6));
+}
 
+/* .navbar-brand:hover {
+    color: var(--accent);
+} */
+
+.navbar-brand img {
+    filter: drop-shadow(0 0 4px rgba(255, 77, 133, 0.3));
+    transition: filter 0.2s ease;
+}
+
+.navbar-brand:hover img {
+    filter: drop-shadow(0 0 8px rgba(255, 77, 133, 0.6));
 }
 
 .sign-out-btn {
