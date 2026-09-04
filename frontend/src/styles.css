@@ -6,6 +6,8 @@
     --text-muted: #ABB3BF;
     --accent: #007a7a;
     --accent-secondary: #4ecccc;
+    --neg-accent: #FF4D85;
+    --neg-secondary-accent: #D96D8C;
     --border-light: rgba(171, 179, 191, 0.15);
     --border-lighter: rgba(171, 179, 191, 0.1);
     --bg-subtle: rgba(171, 179, 191, 0.05);

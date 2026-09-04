@@ -38,12 +38,8 @@
 } */
 
 .navbar-brand img {
-    filter: drop-shadow(0 0 4px rgba(255, 77, 133, 0.3));
+    filter: drop-shadow(0 0 4px var(--accent));
     transition: filter 0.2s ease;
-}
-
-.navbar-brand:hover img {
-    filter: drop-shadow(0 0 8px rgba(255, 77, 133, 0.6));
 }
 
 .sign-out-btn {

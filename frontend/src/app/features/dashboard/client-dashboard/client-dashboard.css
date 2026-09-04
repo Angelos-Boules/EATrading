@@ -37,9 +37,6 @@
 
 .trade-sidebar {
     min-height: 100%;
-    border-radius: 1rem;
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-light);
 }
 
 .greeting {
@@ -59,7 +56,6 @@
     margin: 0;
     font-size: 2rem;
     font-weight: 600;
-    color: var(--accent);
 }
 
 .stat {
