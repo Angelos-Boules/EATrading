@@ -29,12 +29,6 @@
     flex-wrap: wrap;
 }
 
-.welcome-card .divider {
-    align-self: stretch;
-    width: 1px;
-    background: var(--border-light);
-}
-
 .graph-card {
     margin-top: 1.5rem;
     min-height: 22rem;
