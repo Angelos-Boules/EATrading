@@ -8,8 +8,14 @@
 .client-dashboard {
     min-height: 100dvh;
     padding: 1.15rem;
-    width: auto;
+    width: 100%;
     margin: 0 auto;
+}
+
+.client-dashboard .row {
+    margin: 0 auto;
+    padding: 0 2rem;
+    max-width: 1400px;
 }
 
 .welcome-card {
@@ -20,6 +26,7 @@
     border-radius: 1rem;
     padding: 2rem;
     max-width: none;
+    flex-wrap: wrap;
 }
 
 .welcome-card .divider {
@@ -36,6 +43,8 @@
 }
 
 .trade-sidebar {
+    border-radius: 1rem;
+    border: 1px solid var(--border-light);
     min-height: 100%;
 }
 
@@ -70,11 +79,13 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-weight: 600;
+    min-height: 1.2em;
+    display: block;
 }
 
 .stat-value {
     font-size: 1.75rem;
-    font-weight: 700;
+    font-weight: 600;
     color: white;
 }
 
@@ -164,14 +175,57 @@
     font-size: 0.9rem;
 }
 
+@media (max-width: 991px) {
+    .client-dashboard .row {
+        padding: 0 1rem;
+    }
+
+    .trade-sidebar {
+        display: none;
+    }
+
+    .welcome-card {
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+
+    /* First greeting (welcome name) takes full width */
+    .welcome-card > .greeting:nth-child(1) {
+        flex-basis: 100%;
+    }
+
+    /* Hide first divider */
+    .welcome-card > .divider:nth-child(2) {
+        display: none;
+    }
+
+    /* Second greeting and stat share equal space */
+    .welcome-card > .greeting:nth-child(3),
+    .welcome-card > .stat:nth-child(5) {
+        flex: 1;
+        min-width: 0;
+    }
+}
+
 @media (max-width: 768px) {
     .welcome-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
         padding: 1.5rem;
         max-width: 100%;
     }
 
+    .welcome-card .divider {
+        display: none;
+    }
+
     .client-dashboard-tabs {
         max-width: 100%;
+    }
+
+    .client-dashboard .row {
+        padding: 0 0.5rem;
     }
 }
 
